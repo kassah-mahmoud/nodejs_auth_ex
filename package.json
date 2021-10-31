@@ -1,0 +1,15 @@
+{
+  "name": "node-auth-ex",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Mahmoud Kassah <kassah.webdev@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "lerna bootstrap",
+    "start": "lerna run start --stream"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "dependencies": {}
+}
