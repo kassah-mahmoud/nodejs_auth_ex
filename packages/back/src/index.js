@@ -7,11 +7,13 @@ const router = require("./routes");
 const { sequelize } = require("./database/models");
 
 const { port } = require("./config/server");
+const { passport } = require("./passport/jwt");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize());
 app.use("/api", router);
 
 app.listen(port, async (err) => {
