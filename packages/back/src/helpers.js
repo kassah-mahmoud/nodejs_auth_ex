@@ -1,10 +1,15 @@
-const { hashSync } = require("bcrypt");
+const { hash } = require("bcrypt");
 const { User } = require("./database/models");
 
-const saltRounds = 10;
+const salt = process.env.HASH_SALT || "$2b$10$I49D3ThlAFLZTFFFjtKyye";
 
-function hashPassword(pswd) {
-  return hashSync(pswd, saltRounds);
+async function hashPassword(pswd) {
+  try {
+    let hashedPswd = await hash(pswd, salt);
+    return hashedPswd;
+  } catch (err) {
+    return "";
+  }
 }
 
 async function getUser(id) {

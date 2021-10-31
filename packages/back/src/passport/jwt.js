@@ -11,11 +11,14 @@ const jwtOptions = {
   },
 };
 
-const JWTStrategy = new passportJWT.Strategy(jwtOptions, (payload, next) => {
-  const user = getUser(payload.id) || false;
+const JWTStrategy = new passportJWT.Strategy(
+  jwtOptions,
+  async (payload, next) => {
+    const user = (await getUser(payload.id)) || false;
 
-  next(null, user);
-});
+    next(null, user);
+  }
+);
 
 passport.use(JWTStrategy);
 
