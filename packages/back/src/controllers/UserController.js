@@ -64,6 +64,10 @@ class UserController {
       res.status(500).json({ message: "Something went wrong!" });
     }
   }
+
+  static me(req, res) {
+    return res.json(req.user);
+  }
 }
 
 module.exports = UserController;
