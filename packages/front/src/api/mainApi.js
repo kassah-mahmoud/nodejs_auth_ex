@@ -16,7 +16,7 @@ const access_token =
 instance.defaults.headers.common["Authorization"] = access_token;
 
 const mainApi = {
-  getCurrentUser: instance.get("me"),
+  getCurrentUser: () => instance.get("me"),
 };
 
 export default mainApi;

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { USER_LOCAL_STORAGE_KEY } from "../../api/mainApi";
 
 export const userSlice = createSlice({
   name: "user",
@@ -9,9 +10,9 @@ export const userSlice = createSlice({
     success: null,
   },
   reducers: {
-    setLoading: (state) => {
+    setLoading: (state, { payload }) => {
       state.error = null;
-      state.isLoading = true;
+      state.isLoading = payload;
     },
 
     loginUser: (state, { payload }) => {

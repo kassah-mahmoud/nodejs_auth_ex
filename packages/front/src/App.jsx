@@ -1,25 +1,28 @@
 import React from "react";
 import { Router, Redirect } from "@reach/router";
+import Login from "./pages/login";
+import { Container } from "@chakra-ui/layout";
+import Register from "./pages/register";
+import Loader from "./components/Loader";
+import { connect } from "react-redux";
+import useNotification from "./hooks/useNotification";
 
-function App() {
+function App({ isLoading, user }) {
+  useNotification();
   return (
-    <div className="w-full p-5 md:p-10 lg:p-20 bg-gray-300 min-h-screen">
-      <div className="w-full bg-white rounded-md px-5 md:px-10 py-5 mb-10">
-        <div className="flex items-center justify-center space-x-4">
-          <h1 className="font-bold text-2xl text-center">
-            Node Authentication Example
-          </h1>
-        </div>
-      </div>
-      <div className="w-full bg-white rounded-md px-5 md:px-10 py-5 mb-10 overflow-hidden overflow-y-auto">
-        <Router>
-          <Redirect from="/" to="/stores" />
-          <Login path="/login" />
-          <Register path="/register" />
-        </Router>
-      </div>
-    </div>
+    <Container>
+      <Router>
+        <Redirect from="/" to="/login" noThrow />
+        <Login path="/login" />
+        <Register path="/register" />
+      </Router>
+      {isLoading && <Loader />}
+    </Container>
   );
 }
 
-export default App;
+const mapStateToProps = ({ user: { isLoading, user } }) => ({
+  user,
+  isLoading,
+});
+export default connect(mapStateToProps)(App);

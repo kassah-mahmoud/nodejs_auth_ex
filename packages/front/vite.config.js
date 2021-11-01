@@ -6,8 +6,7 @@ export default defineConfig({
   plugins: [reactRefresh()],
   server: {
     proxy: {
-      "/api": "http://localhost:5000/",
-      "/public": "http://localhost:5000/",
+      "/api": "http://localhost:6000/",
     },
   },
 });
