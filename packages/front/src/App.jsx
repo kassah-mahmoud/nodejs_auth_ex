@@ -8,9 +8,14 @@ import { connect } from "react-redux";
 import useNotification from "./hooks/useNotification";
 import Welcome from "./pages/welcome";
 import PrivateRoute from "./components/PrivateRoute";
+import { getCurrentUser } from "./features/stores/userAction";
+import { useEffect } from "react";
 
-function App({ isLoading, user }) {
+function App({ isLoading, user, ...props }) {
   useNotification();
+  useEffect(() => {
+    props.getCurrentUser();
+  }, []);
   return (
     <Container>
       <Router>
@@ -27,4 +32,4 @@ const mapStateToProps = ({ user: { isLoading, user } }) => ({
   user,
   isLoading,
 });
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { getCurrentUser })(App);

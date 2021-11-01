@@ -10,7 +10,7 @@ jwtOptions.jwtFromRequest =
 
 jwtOptions.secretOrKey = process.env.TOKEN_SECRET;
 jwtOptions.jsonWebTokenOptions = {
-  expiresIn: "7d",
+  expiresIn: "30d",
 };
 
 const JWTStrategy = new passportJWT.Strategy(

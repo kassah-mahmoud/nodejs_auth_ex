@@ -1,5 +1,5 @@
 import authApi from "../../api/authApi";
-import { USER_LOCAL_STORAGE_KEY } from "../../api/mainApi";
+import mainApi, { USER_LOCAL_STORAGE_KEY } from "../../api/mainApi";
 import { navigate } from "@reach/router";
 
 import {
@@ -72,9 +72,28 @@ export const register = (data) => async (dispatch) => {
     });
 };
 
-export const logout = (navigate) => (dispatch) => {
+export const logout = () => (dispatch) => {
   dispatch(logoutUser());
   localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
   dispatch(setSuccess("Logged out successfully"));
-  navigate && navigate("/");
+  navigate && navigate("/login");
+};
+
+export const getCurrentUser = () => (dispatch) => {
+  const accessToken = JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE_KEY));
+  accessToken &&
+    mainApi
+      .getCurrentUser()
+      .then((res) => {
+        if (!res?.data?.id) {
+          dispatch(setError("Sesssion expired"));
+          dispatch(logout());
+        } else {
+          dispatch(loginUser(res.data));
+        }
+      })
+      .catch(() => {
+        dispatch(setError("Sesssion expired"));
+        dispatch(logout());
+      });
 };
