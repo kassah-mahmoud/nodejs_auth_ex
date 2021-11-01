@@ -5,7 +5,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     isLoading: false,
-    user: JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE_KEY)),
+    user: JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE_KEY))?.user,
     error: null,
     success: null,
   },

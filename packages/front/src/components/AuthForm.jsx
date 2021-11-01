@@ -2,9 +2,11 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormErrorMessage } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Text, VStack } from "@chakra-ui/layout";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import { useFormik } from "formik";
 import React from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import * as yup from "yup";
 
 const registerSchema = yup.object().shape({
@@ -25,6 +27,13 @@ const AuthForm = ({
   type = "login", // other option is register
   onSubmit,
 }) => {
+  const user = useSelector((state) => state.user?.user);
+  useEffect(() => {
+    if (user?.id) {
+      navigate("/");
+      return null;
+    }
+  }, [user]);
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {

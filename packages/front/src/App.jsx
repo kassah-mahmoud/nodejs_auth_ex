@@ -6,13 +6,15 @@ import Register from "./pages/register";
 import Loader from "./components/Loader";
 import { connect } from "react-redux";
 import useNotification from "./hooks/useNotification";
+import Welcome from "./pages/welcome";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App({ isLoading, user }) {
   useNotification();
   return (
     <Container>
       <Router>
-        <Redirect from="/" to="/login" noThrow />
+        <PrivateRoute path="/" component={Welcome} />
         <Login path="/login" />
         <Register path="/register" />
       </Router>

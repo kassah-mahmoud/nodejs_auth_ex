@@ -1,5 +1,6 @@
 import authApi from "../../api/authApi";
 import { USER_LOCAL_STORAGE_KEY } from "../../api/mainApi";
+import { navigate } from "@reach/router";
 
 import {
   loginUser,
@@ -25,6 +26,7 @@ export const login = (data) => async (dispatch) => {
           })
         );
         dispatch(setSuccess("Logged in successfully"));
+        navigate("/");
       } else {
         dispatch(setError("Something went wrong!"));
       }
@@ -55,6 +57,7 @@ export const register = (data) => async (dispatch) => {
           })
         );
         dispatch(setSuccess("Registered successfully"));
+        navigate("/");
       } else {
         dispatch(setError("Something went wrong!"));
       }

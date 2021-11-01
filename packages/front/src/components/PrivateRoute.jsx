@@ -1,17 +1,15 @@
-import React from "react";
-import { navigate } from "@reach/router";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "@reach/router";
 
-const PrivateRoute = ({ component: Component, location, ...rest }) => {
-  const user = useSelector((state) => state?.user);
+const PrivateRoute = ({ navigate, component: Component, ...rest }) => {
+  const user = useSelector((state) => state?.user?.user);
 
-  // const location = useLocation();
-
-  if (!user?.id) {
-    navigate("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user?.id) {
+      navigate("/login");
+      return null;
+    }
+  }, [user]);
 
   return <Component {...rest} />;
 };
