@@ -1,7 +1,7 @@
 import { useToast } from "@chakra-ui/toast";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setError, setSuccess } from "../features/stores/userSlice";
+import { setError, setSuccess } from "../features/user/userSlice";
 
 export default function useNotification() {
   const dispatch = useDispatch();

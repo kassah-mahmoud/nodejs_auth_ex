@@ -2,7 +2,7 @@ import { Center, Heading, VStack } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../features/stores/userAction";
+import { logout } from "../features/user/userAction";
 
 const Welcome = () => {
   const dispatch = useDispatch();

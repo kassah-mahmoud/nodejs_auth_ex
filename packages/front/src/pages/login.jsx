@@ -2,7 +2,7 @@ import { Center, Heading, VStack } from "@chakra-ui/layout";
 import React from "react";
 import { useDispatch } from "react-redux";
 import AuthForm from "../components/AuthForm";
-import { login } from "../features/stores/userAction";
+import { login } from "../features/user/userAction";
 
 const Login = () => {
   const dispatch = useDispatch();

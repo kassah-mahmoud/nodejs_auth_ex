@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import useNotification from "./hooks/useNotification";
 import Welcome from "./pages/welcome";
 import PrivateRoute from "./components/PrivateRoute";
-import { getCurrentUser } from "./features/stores/userAction";
+import { getCurrentUser } from "./features/user/userAction";
 import { useEffect } from "react";
 
 function App({ isLoading, user, ...props }) {
