@@ -7,3 +7,4 @@ To run the project
 - run the migrations: npx sequelize-cli db:migrate   
 - go back to home dir: cd ../../../../  
 - yarn start  
+![node_auth_ex](https://user-images.githubusercontent.com/75623572/142987946-a6d4e746-fc1c-4a78-a4f4-247e928ce7ed.gif)
